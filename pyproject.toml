@@ -14,5 +14,8 @@ dependencies = [
     "crewai>=0.86",
     "crewai-tools>=0.17",
     "pytest>=8.0",
-    "pytest-asyncio>=0.23"
+    "pytest-asyncio>=0.23",
+    "httpx2>=2.4.0",
+    "flake8>=7.3.0",
+    "mypy>=2.1.0",
 ]
