@@ -3,5 +3,16 @@ name = "ai-researcher"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.14"
-dependencies = []
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.138.0",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "crewai>=0.86",
+    "crewai-tools>=0.17",
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23"
+]
