@@ -4,14 +4,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "Ai researcher"
-    model_name: str = "gpt-4o-mini"
+    model_name: str = "gemini/gemini-1.5-pro"
     openai_api_key: str | None = None
     anthropic_api_key: str | None = None
     serper_api_key: str | None = None
     tavily_api_key: str | None = None
     use_real_crew: bool = False
     request_timeout_seconds: int = 120
-
+    gemini_api_key: str | None = None
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", frozen=True
     )
