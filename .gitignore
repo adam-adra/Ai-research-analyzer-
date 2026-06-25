@@ -3,3 +3,5 @@ IMPLEMENTATION_PLAN.md
 .mypy_cache
 .pytest_cache
 .venv
+__pycache__/
+**/*.pyc
