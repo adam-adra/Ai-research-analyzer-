@@ -10,16 +10,12 @@ class MockEngine:
     """
 
     def analyze(self, idea: str) -> FeasibilityReport:
-        # 1. Determinism: We want the exact same idea to always return the
-        # exact same report. We hash the idea to seed the random generator.
         idea_hash = int(hashlib.md5(idea.encode("utf-8")).hexdigest(), 16)
         random.seed(idea_hash)
 
-        # 2. Basic Idea Awareness: Grab the first few words for the topic
         words = idea.split()
         topic = " ".join(words[:4]) if len(words) > 4 else idea
 
-        # 3. Simple Heuristic for Recommendation
         from typing import cast, Literal
         choices = ["build", "dont_build", "build_with_caveats"]
         raw_rec = random.choice(choices)
@@ -28,7 +24,6 @@ class MockEngine:
             raw_rec
         )
 
-        # 4. Construct and return the perfectly validated Pydantic schema
         return FeasibilityReport(
             idea=idea,
             market_overview=(
