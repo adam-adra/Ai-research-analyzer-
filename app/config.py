@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     request_timeout_seconds: int = 120
 
     model_config = SettingsConfigDict(env_file=".env",
-                                      env_file_encoding="uft-8",
+                                      env_file_encoding="utf-8",
                                       frozen=True)
 
 
