@@ -10,7 +10,7 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="Ai product research & Feasibility Analyzer",
         description="Multi-agent feasibility analyzer for product ideas",
-        version="0.1.0"
+        version="0.1.0",
     )
 
     app.include_router(api_router)

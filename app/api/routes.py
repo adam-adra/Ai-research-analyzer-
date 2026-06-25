@@ -13,10 +13,8 @@ async def health_check():
     Basic health check endpoint to verify the API is running
     Returns status and the engine type
     """
-    return {
-        "status": "ok",
-        "engine": "mock"
-    }
+    return {"status": "ok", "engine": "mock"}
+
 
 @router.post("/analyze", response_model=AnalyzeResponse)
 async def analyze_idea(request: AnalyzeRequest):
@@ -27,7 +25,5 @@ async def analyze_idea(request: AnalyzeRequest):
     log_request(request.idea, durations_ms, report.engine)
 
     return AnalyzeResponse(
-        report=report,
-        meta={"durations_ms": durations_ms, "engine":report.engine}
+        report=report, meta={"durations_ms": durations_ms, "engine": report.engine}
     )
-

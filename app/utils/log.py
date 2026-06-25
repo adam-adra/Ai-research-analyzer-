@@ -3,9 +3,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("api_logger")
 
-def log_request(idea: str,
-                duration_ms: float,
-                engine: str):
+
+def log_request(idea: str, duration_ms: float, engine: str):
     """
     logs the details of the request safely
     """

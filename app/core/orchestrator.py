@@ -4,9 +4,8 @@ from app.schemas.report import FeasibilityReport
 from typing import Tuple
 import time
 
+
 class Orchestrator:
-
-
     def analyze(self, idea: str) -> Tuple[FeasibilityReport, float]:
         """
         this is the orchestrator of what engine should it choose
@@ -14,19 +13,19 @@ class Orchestrator:
         the crew ai system
         """
         settings = get_settings()
-        
-        if not settings.use_real_crew or \
-           not settings.openai_api_key:
-           start_time = time.time()
-           mockengine = MockEngine()
 
-           result = mockengine.analyze(idea)
-           result.engine = "mock"
-           duration_ms = (time.time() - start_time) * 1000
+        if not settings.use_real_crew or not settings.openai_api_key:
+            start_time = time.time()
+            mockengine = MockEngine()
 
-           return (result, duration_ms)
+            result = mockengine.analyze(idea)
+            result.engine = "mock"
+            duration_ms = (time.time() - start_time) * 1000
 
-        elif settings.use_real_crew and \
-            settings.openai_api_key:
-        ## here you have to add the agent chain
-            pass
+            return (result, duration_ms)
+
+        elif settings.use_real_crew and settings.openai_api_key:
+            # here you have to add the agent chain
+            raise NotImplementedError("Real crew not implemented yet")
+
+        raise ValueError("Invalid configuration state")

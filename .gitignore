@@ -6,3 +6,6 @@ IMPLEMENTATION_PLAN.md
 __pycache__/
 **/*.pyc
 obsidian vault/
+.ruff_cache/
+*.log
+.DS_Store

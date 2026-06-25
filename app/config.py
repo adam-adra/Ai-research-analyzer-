@@ -12,9 +12,9 @@ class Settings(BaseSettings):
     use_real_crew: bool = False
     request_timeout_seconds: int = 120
 
-    model_config = SettingsConfigDict(env_file=".env",
-                                      env_file_encoding="utf-8",
-                                      frozen=True)
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", frozen=True
+    )
 
 
 @lru_cache
