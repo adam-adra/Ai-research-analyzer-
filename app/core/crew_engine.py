@@ -24,7 +24,7 @@ class CrewEngine:
             agents=list(agents_dict.values()),
             tasks=tasks_list,
             process=Process.sequential,
-            verbose=True,
+            # verbose=True,
         )
 
         result = await asyncio.to_thread(crew.kickoff, inputs={"idea": idea})

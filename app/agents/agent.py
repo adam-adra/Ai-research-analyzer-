@@ -25,7 +25,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         tools=tools,
         llm=my_llm,
         allow_delegation=False,
-        verbose=True,
+        # verbose=True,
     )
 
     market_agent = Agent(
@@ -34,7 +34,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         backstory="You are an expert at identifying market trends, target demographics, and analyzing competitor strengths and weaknesses.",
         llm=my_llm,
         allow_delegation=False,
-        verbose=True,
+        # verbose=True,
     )
 
     risk_agent = Agent(
@@ -43,7 +43,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         backstory="You are a skeptical, pragmatic analyst who looks for reasons an idea might fail. You prioritize technical and financial reality over hype.",
         llm=my_llm,
         allow_delegation=False,
-        verbose=True,
+        # verbose=True,
     )
 
     strategy_agent = Agent(
@@ -52,7 +52,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         backstory="You are a decisive product leader who makes data-driven decisions on whether to invest in a project.",
         llm=my_llm,
         allow_delegation=False,
-        verbose=True,
+        # verbose=True,
     )
 
     return {
