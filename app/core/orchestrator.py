@@ -42,9 +42,7 @@ class Orchestrator:
             )
         except asyncio.TimeoutError:
             logger.warning(
-                f"Engine {engine.__class__.__name__}" "" \
-                "timed out after {settings.request_timeout_seconds}s.""" \
-                "Degrading to MockEngine."
+                f"Engine {engine.__class__.__name__} timed out after {settings.request_timeout_seconds}s. Degrading to MockEngine."
             )
             engine = MockEngine()
             result = await engine.analyze(idea)
