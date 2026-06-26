@@ -1,6 +1,7 @@
-import random
 import hashlib
-from app.schemas.report import FeasibilityReport, Competitor
+import random
+
+from app.schemas.report import Competitor, FeasibilityReport
 
 
 class MockEngine:
@@ -9,14 +10,14 @@ class MockEngine:
     without making any LLM or network calls.
     """
 
-    def analyze(self, idea: str) -> FeasibilityReport:
+    async def analyze(self, idea: str) -> FeasibilityReport:
         idea_hash = int(hashlib.md5(idea.encode("utf-8")).hexdigest(), 16)
         random.seed(idea_hash)
 
         words = idea.split()
         topic = " ".join(words[:4]) if len(words) > 4 else idea
 
-        from typing import cast, Literal
+        from typing import Literal, cast
 
         choices = ["build", "dont_build", "build_with_caveats"]
         raw_rec = random.choice(choices)

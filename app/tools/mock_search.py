@@ -1,12 +1,11 @@
 from typing import Type
-from pydantic import BaseModel, Field
+
 from crewai.tools import BaseTool
+from pydantic import BaseModel, Field
 
 
 class SearchInput(BaseModel):
-    query: str = Field(
-        ..., description="Search query for market/competitor research"
-    )
+    query: str = Field(..., description="Search query for market/competitor research")
 
 
 class MockWebSearchTool(BaseTool):
@@ -22,19 +21,19 @@ class MockWebSearchTool(BaseTool):
             results = [
                 "1. Market Overview: Growing rapidly with key players like Quizlet.",
                 "2. Competitor Analysis: Startups are focusing on spaced repetition.",
-                "3. Pricing: Average subscription costs range from $5 to $15/month."
+                "3. Pricing: Average subscription costs range from $5 to $15/month.",
             ]
         elif "risk" in query_lower or "technical" in query_lower:
             results = [
                 "1. Technical Risks: High LLM API costs and latency are concerns.",
                 "2. Data Privacy: Strict educational privacy laws required.",
-                "3. Accuracy: AI hallucinations remain a critical challenge."
+                "3. Accuracy: AI hallucinations remain a critical challenge.",
             ]
         else:
             results = [
                 f"1. Top Result for '{query}': Significant interest observed.",
                 f"2. Industry Trend: Many developers are exploring '{query}'.",
-                "3. User Feedback: Early adopters report high satisfaction."
+                "3. User Feedback: Early adopters report high satisfaction.",
             ]
 
         return "Mock Search Results:\n" + "\n".join(results)

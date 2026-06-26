@@ -1,5 +1,9 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
+
 from app.api.routes import router as api_router
+
+load_dotenv()
 
 
 def create_app() -> FastAPI:

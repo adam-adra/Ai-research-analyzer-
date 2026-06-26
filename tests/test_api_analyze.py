@@ -1,10 +1,15 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from unittest.mock import patch
+from app.config import Settings
 
 client = TestClient(app)
 
+@patch("app.core.orchestrator.get_settings")
+def test_analyze_valid_idea(mock_get_settings):
+    # Force the orchestrator to use the mock engine for this test
+    mock_get_settings.return_value = Settings(use_real_crew=False)
 
-def test_analyze_valid_idea():
     response = client.post(
         "/analyze",
         json={"idea": "Should I build an AI study assistant for medical students?"},

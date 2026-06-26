@@ -1,18 +1,23 @@
 import os
-from crewai import Agent, LLM
-from app.config import get_settings, Settings
+
+from crewai import LLM, Agent
+
+from app.config import Settings, get_settings
 
 os.environ["GEMINI_API_KEY"] = get_settings().gemini_api_key or "fake-key"
+os.environ["OPENROUTER_API_KEY"] = get_settings().openrouter_api_key or "fake-key"
+
 
 def build_llm(s: Settings) -> LLM:
     return LLM(model=s.model_name, temperature=0.3)
+
 
 def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
     """
     Factory to build and return the 4 pipeline agents.
     """
     my_llm = build_llm(settings)
-    
+
     research_agent = Agent(
         role="Senior Product Researcher",
         goal="Gather demand signals, competitors, and context for {idea}",
@@ -22,7 +27,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         allow_delegation=False,
         verbose=True,
     )
-    
+
     market_agent = Agent(
         role="Market Analyst",
         goal="Assess demand, audience, competitive landscape; identify similar products",
@@ -31,7 +36,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         allow_delegation=False,
         verbose=True,
     )
-    
+
     risk_agent = Agent(
         role="Risk & Feasibility Analyst",
         goal="Evaluate technical risk, market saturation, cost/complexity, feasibility constraints",
@@ -40,7 +45,7 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         allow_delegation=False,
         verbose=True,
     )
-    
+
     strategy_agent = Agent(
         role="Head of Strategy",
         goal="Synthesize everything into build / don't-build with reasoning + MVP",
@@ -49,10 +54,10 @@ def build_agents(settings: Settings, tools: list) -> dict[str, Agent]:
         allow_delegation=False,
         verbose=True,
     )
-    
+
     return {
         "research": research_agent,
         "market": market_agent,
         "risk": risk_agent,
-        "strategy": strategy_agent
+        "strategy": strategy_agent,
     }

@@ -11,3 +11,10 @@ def log_request(idea: str, duration_ms: float, engine: str):
     logger.info(
         f"Engine: {engine} | Idea Length: {len(idea)} chars | Duration: {duration_ms:.2f}ms"
     )
+
+
+def log_debug(text: str):
+    """
+    this is a logger for debug
+    """
+    logger.info(f"[Debug]: {text}")

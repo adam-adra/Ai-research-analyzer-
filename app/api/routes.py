@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from app.schemas.report import AnalyzeResponse, AnalyzeRequest
-from app.core.orchestrator import Orchestrator
-from app.utils.log import log_request
 
+from app.core.orchestrator import Orchestrator
+from app.schemas.report import AnalyzeRequest, AnalyzeResponse
+from app.utils.log import log_request
 
 router = APIRouter()
 
@@ -20,7 +20,7 @@ async def health_check():
 async def analyze_idea(request: AnalyzeRequest):
     orchestrator = Orchestrator()
 
-    report, durations_ms = orchestrator.analyze(request.idea)
+    report, durations_ms = await orchestrator.analyze(request.idea)
 
     log_request(request.idea, durations_ms, report.engine)
 
