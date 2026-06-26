@@ -15,7 +15,6 @@ async def analyze_idea(idea: str) -> str:
     
     orchestrator = Orchestrator()
     
-    # Redirect stdout to stderr to prevent CrewAI from corrupting the MCP JSON-RPC protocol over stdio
     with contextlib.redirect_stdout(sys.stderr):
         report, duration_ms = await orchestrator.analyze(idea)
 
